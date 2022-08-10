@@ -68,13 +68,17 @@ export class PaymentPage {
           // At this point you may pass the token back to your server as you wish.
           // In this example we append a hidden input to the form and submit it.
           //todo this is not working. this.paymentApi is undefined at this stage
-          this.paymentApi.postTransientToken(token)
-            .then(response => {
-              console.log(response);
-            })
-            .catch(err => {
-              console.log("Error happened posting token " + err);
-            });
+          console.log(token)
+          document.getElementById("capture_context").value = captureContext;
+          document.getElementById("transient_token").value = token;
+          // document.getElementById("sa-form").submit();
+          // this.paymentApi.postTransientToken(token)
+          //   .then(response => {
+          //     console.log(response);
+          //   })
+          //   .catch(err => {
+          //     console.log("Error happened posting token " + err);
+          //   });
           // const hiddenInput = document.createElement('input');
           // hiddenInput.setAttribute('type', 'hidden');
           // hiddenInput.setAttribute('name', 'transientToken');
