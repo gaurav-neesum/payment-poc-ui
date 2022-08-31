@@ -9,8 +9,8 @@ export class App {
     config.options.pushState = true;
     config.options.root = '/';
     config.map([
-      {route: '', moduleId: PLATFORM.moduleName('home'), title: 'Welcome home', name: 'home-page'},
-      {route: 'basket', moduleId: PLATFORM.moduleName('./basket'), name: 'paymentForm'},
+      // {route: '', moduleId: PLATFORM.moduleName('home'), title: 'Welcome home', name: 'home-page'},
+      {route: '', moduleId: PLATFORM.moduleName('./basket'), name: 'paymentForm'},
       {route: 'payment', moduleId: PLATFORM.moduleName('./payment-page'), name: 'PaymentPage'}
     ]);
     this.router = router;

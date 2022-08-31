@@ -1,11 +1,16 @@
 <template>
+  <form role="form">
+    <div class="field">
+      <label class="label">Amount </label>
+      <div class="control">
+        <input class="input is-success" type="number" placeholder="Amount" value.bind="paymentAmount">
+      </div>
+    </div>
+  </form>
+  <div class="field is-grouped">
+    <div class="control">
+      <button class="button is-link" click.delegate="save()">Submit</button>
+    </div>
+  </div>
 
-  <div>
-    <form role="form">
-      <input type="number" placeholder="amount" value.bind="paymentAmount">
-    </form>
-  </div>
-  <div>
-    <button class="btn btn-success float-right" click.delegate="save()" >Save</button>
-  </div>
 </template>
