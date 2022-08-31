@@ -1,7 +1,11 @@
 import {inject} from "aurelia-framework";
 import {HttpClient} from "aurelia-fetch-client";
 
-let paymentHttpClient = new HttpClient();
+let paymentHttpClient = new HttpClient()
+  .configure(x => {
+    x.withBaseUrl('http://localhost:8080/receipt')
+      .p;
+  });
 
 @inject(HttpClient)
 export class PaymentApi {

@@ -11,7 +11,8 @@ export class App {
     config.map([
       // {route: '', moduleId: PLATFORM.moduleName('home'), title: 'Welcome home', name: 'home-page'},
       {route: '', moduleId: PLATFORM.moduleName('./basket'), name: 'paymentForm'},
-      {route: 'payment', moduleId: PLATFORM.moduleName('./payment-page'), name: 'PaymentPage'}
+      {route: 'payment', moduleId: PLATFORM.moduleName('./payment-page'), name: 'PaymentPage'},
+      {route: 'receipt', moduleId: PLATFORM.moduleName('./receipt'), name: 'ReceiptPage'}
     ]);
     this.router = router;
   }
