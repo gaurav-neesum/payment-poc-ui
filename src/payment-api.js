@@ -3,8 +3,10 @@ import {HttpClient} from "aurelia-fetch-client";
 
 let paymentHttpClient = new HttpClient()
   .configure(x => {
-    x.withBaseUrl('http://localhost:8080/receipt')
-      .p;
+    x.withBaseUrl('/')
+      .withInterceptor({
+
+      });
   });
 
 @inject(HttpClient)
@@ -30,6 +32,24 @@ export class PaymentApi {
       })
   }
 
+  checkPayment(token) {
+    return paymentHttpClient.post("http://localhost:5005/check-payment",
+      {
+        method: 'POST',
+        body: {
+          'token': token
+        }
+      })
+      .then(response => response.json())
+      .then(response => {
+        return response;
+      })
+      .catch(err => {
+        console.log('There was an error posting transient token');
+        throw err;
+      })
+  }
+
   postTransientToken(token) {
     return paymentHttpClient.fetch("http://localhost:5005/cb/transient",
       {
@@ -42,7 +62,7 @@ export class PaymentApi {
       .then(response => {
         return response;
       })
-      .catch(err =>{
+      .catch(err => {
         console.log('There was an error posting transient token');
         throw err;
       })

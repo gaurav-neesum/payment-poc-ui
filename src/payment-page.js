@@ -6,7 +6,6 @@ import {inject} from "aurelia-framework";
 export class PaymentPage {
   constructor(paymentApi) {
     this.paymentApi = paymentApi;
-    this.paymentResponse;
   }
 
 
@@ -21,27 +20,38 @@ export class PaymentPage {
     console.log("calling activate")
     this.routeConfig = routeConfig;
     this.routeConfig.navModel.setTitle('CS Payment')
-  }
-
-
-  attached() {
-    console.log("Calling attaching")
+    console.log("Creating flex")
     let scriptElement = document.createElement('script');
     scriptElement.src = "https://flex.cybersource.com/cybersource/assets/microform/0.11/flex-microform.min.js";
-    let captureContext = sessionStorage.cybersourceCaptureContext;
     document.head.appendChild(scriptElement);
+  }
+
+  attached() {
+    this.createFlex();
+  }
+
+  createFlex() {
+    let captureContext = sessionStorage.cybersourceCaptureContext;
+
     let myStyles = {
       'input': {
-        'font-size': '14px',
+        'font-size': '1rem',
+        'float': 'right',
         'font-family': 'tahoma',
-        'color': 'grey'
+        'color': 'blue'
       },
       ':focus': {'color': 'blue'},
       ':disabled': {'cursor': 'not-allowed'},
       'valid': {'color': '#3c763d'},
-      'invalid': {'color': '#a94442'}
+      'invalid': {'color': '#93a942'}
     };
-    let flex = new Flex(captureContext);
+    let flex;
+    try {
+      flex = new Flex(captureContext);
+    } catch (e) {
+      console.log("Error happened man");
+    }
+
     let microform = flex.microform({styles: myStyles});
     let number = microform.createField('number', {placeholder: 'Enter card number'});
     let securityCode = microform.createField('securityCode', {placeholder: '...'});
@@ -71,7 +81,10 @@ export class PaymentPage {
           console.log(token)
           document.getElementById("capture_context").value = captureContext;
           document.getElementById("transient_token").value = token;
-          // document.getElementById("sa-form").submit();
+          document.getElementById("sa-form").submit();
+          document.getElementById("cb-card-form").style.display = "none";
+          document.getElementById("challenge-3ds").className = "box";
+
           // this.paymentApi.postTransientToken(token)
           //   .then(response => {
           //     console.log(response);

@@ -1,39 +1,63 @@
 <template>
-  <!--  <require from='script-injector'></require>-->
-  <div id="payment-iframe">
+
   </div>
-  <!-- Pay Button Controlled From WebSDK -->
-  <button type="button" id="submit-payment-button" click.delegate="makePayment()">
-    Pay Now
-  </button>
   <div id="errors-output" role="alert"></div>
   <form role="form" id="cb-card-form">
     <!--  <form action="http://localhost:8082/testing0804/1.php%20-%20WP%20Iframe%20PA&Token&Override%20URL/web/receipt.php" method="post" id="cb-card-form">-->
 
-    <!-- Containers in which we will load microform -->
+
     <label for="number-container">Card Number</label>
-    <div id="number-container"></div>
+    <div id="number-container" class="input"></div>
 
     <label for="securityCode-container">Security Code</label>
-    <div id="securityCode-container"></div>
+    <div id="securityCode-container" class="input"></div>
 
-    <!-- All the other fields comprising the form post to your server go here-->
+    <label>Card Expiration</label>
 
-    <label for="expirationMonth">Expiration Month</label>
-    <input id="expirationMonth" placeholder="MM" maxLength="2"/>
+    <div class="field is-horizontal">
+      </div>
+      <div class="field-body">
+        <div class="field">
+          <p class="control is-expanded">
+            <input class="input" id="expirationMonth"  type="number" placeholder="MM">
+            <span class="icon is-small is-left">
+          <i class="fas fa-user"></i>
+        </span>
+          </p>
+        </div>
+        <div class="field">
+          <p class="control is-expanded">
+            <input class="input"  id="expirationYear" type="number" placeholder="YYYY">
+            <span class="icon is-small is-left">
+          <i class="fas fa-envelope"></i>
+        </span>
+            <span class="icon is-small is-right">
+          <i class="fas fa-check"></i>
+        </span>
+          </p>
+        </div>
+      </div>
+    </div>
 
-    <label for="expirationYear">Expiration Year</label>
-    <input id="expirationYear" placeholder="YYYY" maxLength="4"/>
 
-    <!-- Button element to trigger tokenization  -->
-    <button type="button">Pay</button>
-    <!--    <button type="button" click.delegate="receipt()">Pay</button>-->
+    <div class="field is-horizontal">
+      <div class="field-body">
+        <div class="field">
+          <div class="control">
+            <button type="button" class="button is-primary">
+              Pay
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </form>
-  <iframe name="my_iframe" width="680" height="428"></iframe>
-  <form role="form" id="sa-form" action="https://testsecureacceptance.cybersource.com/silent/embedded/pay" method="post" target="my_iframe">
-    <input  id="capture_context" name="capture_context"
+  <iframe name="my_iframe" width="680" height="428" id="challenge-3ds" ></iframe>
+  <form hidden role="form" id="sa-form" action="https://testsecureacceptance.cybersource.com/silent/embedded/pay"
+        method="post" target="my_iframe">
+    <input id="capture_context" name="capture_context"
            value=""/>
     <input id="transient_token" name="transient_token" value=""/>
-    <input type="submit" id="submit" value="Confirm"/>
+    <!--    <input type="submitto" id="submitto" value="Confirm"/>-->
   </form>
 </template>

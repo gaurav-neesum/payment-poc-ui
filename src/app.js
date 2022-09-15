@@ -12,7 +12,7 @@ export class App {
       // {route: '', moduleId: PLATFORM.moduleName('home'), title: 'Welcome home', name: 'home-page'},
       {route: '', moduleId: PLATFORM.moduleName('./basket'), name: 'paymentForm'},
       {route: 'payment', moduleId: PLATFORM.moduleName('./payment-page'), name: 'PaymentPage'},
-      {route: 'receipt', moduleId: PLATFORM.moduleName('./receipt'), name: 'ReceiptPage'}
+      {route: 'receipt', moduleId: PLATFORM.moduleName('./receipt'), name: 'receipt'}
     ]);
     this.router = router;
   }
